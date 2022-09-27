@@ -12,6 +12,8 @@ formulario.addEventListener('submit', validarFormulario)
 
 function validarFormulario(e) {
     e.preventDefault();
+    
+    spinner();
 
     const terminoBusqueda = document.getElementById('termino').value;
 
@@ -28,8 +30,6 @@ function buscarImagenes() {
     const termino = document.getElementById('termino').value;
     const key = '30188482-4eb1959150027a308bf27e95a';
     const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPagina}&page=${paginaActual}`;
-
-    spinner();
 
     fetch(url)
         .then( (respuesta) => 
@@ -145,6 +145,7 @@ function limpiarHTML() {
 }
 
 function spinner() {
+    limpiarHTML();
     const divSpiner = document.createElement('div');
     divSpiner.classList.add('sk-circle');
     divSpiner.innerHTML = `
