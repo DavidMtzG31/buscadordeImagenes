@@ -62,6 +62,8 @@ function mostrarImagenes(datos) {
     const { hits, total } = datos;
     if(total === 0) {
         alerta('Búsqueda sin restultados');
+        limpiarHTML();
+        paginacionDiv.remove();
         return;
     }
 
