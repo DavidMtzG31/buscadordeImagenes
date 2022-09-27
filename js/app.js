@@ -19,7 +19,8 @@ function validarFormulario(e) {
         alerta('Introduce un término de búsqueda');
         return;
     }
-    buscarImagenes();
+        buscarImagenes();
+
 }
 
 function buscarImagenes() {
@@ -27,6 +28,8 @@ function buscarImagenes() {
     const termino = document.getElementById('termino').value;
     const key = '30188482-4eb1959150027a308bf27e95a';
     const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPagina}&page=${paginaActual}`;
+
+    spinner();
 
     fetch(url)
         .then( (respuesta) => 
@@ -63,9 +66,7 @@ function mostrarImagenes(datos) {
     }
 
     // Limpia el html en caso de que haya búsquedas anteriores
-    while(resultado.firstChild) {
-        resultado.removeChild(resultado.firstChild)
-    }
+    limpiarHTML();
 
     // Iterar sobre el arreglo de imagenes y construir el html
     hits.forEach(imagen => {
@@ -135,4 +136,30 @@ function imprimirPaginador() {
         paginacionDiv.appendChild(boton);
 
     }
+}
+
+function limpiarHTML() {
+        while(resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild)
+    }
+}
+
+function spinner() {
+    const divSpiner = document.createElement('div');
+    divSpiner.classList.add('sk-circle');
+    divSpiner.innerHTML = `
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    `
+    resultado.appendChild(divSpiner);
 }
